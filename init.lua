@@ -18,8 +18,6 @@ vim.keymap.set({'n', 'v'}, 'y', '"+y')
 vim.keymap.set({'n', 'v'}, 'p', '"+p')
 
 require("config.lazy")
-require('nvim-web-devicons').setup()
-require('mini.icons').setup()
 
 wk = require('which-key')
 

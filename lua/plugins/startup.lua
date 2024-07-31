@@ -29,12 +29,12 @@ return {
 
          }
          dashboard.section.buttons.val = {
-             dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-             dashboard.button("f", "  Find file", ":Telescope find_files<CR>"),
-             dashboard.button("p", "  Projects", ":Telescope live_grep search_dirs=<CR>"),
-            dashboard.button("r", "  Recent files", ":Telescope oldfiles<CR>"),
+            dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
+            dashboard.button("f", "  Find file", ":Telescope find_files<CR>"),
+            dashboard.button("p", "  Live Grep", ":Telescope live_grep<CR>"),
+            dashboard.button("r", "  Recent files", ":Telescope oldfiles<CR>"),
             dashboard.button("c", "  Configuration", ":e $MYVIMRC<CR>"),
-            dashboard.button("u", "  Update plugins", ":PackerUpdate<CR>"),
+            dashboard.button("u", "  Update plugins", ":Lazy sync<CR>"),
             dashboard.button("q", "󰅚  Quit NVIM", ":qa<CR>"),
         }
         
