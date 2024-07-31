@@ -6,16 +6,40 @@ vim.o.tabstop = 4 -- A TAB character looks like 4 spaces
 vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
 vim.o.softtabstop = 4 -- Number of spaces inserted instead of a TAB character
 vim.o.shiftwidth = 4 -- Number of spaces inserted when indenting
+vim.o.whichwrap = '<,>,[,],h,l'
+
 vim.cmd([[
   autocmd FocusGained,BufEnter * checktime
 ]])
--- vim.opt.clipboard = "unnamedplus"
-require("config.lazy")
+
 vim.opt.termguicolors = true
 vim.api.nvim_set_option("clipboard", "unnamed")
 vim.keymap.set({'n', 'v'}, 'y', '"+y')
 vim.keymap.set({'n', 'v'}, 'p', '"+p')
-vim.cmd([[colorscheme gruvbox]])
+
+require("config.lazy")
+require('nvim-web-devicons').setup()
+require('mini.icons').setup()
+
+wk = require('which-key')
+
+wk.add({{
+    "<leader>f",
+    group = "LSP", icon =  '+'
+}, {
+    "<leader>g",
+    group = "GIT"
+}, {
+    "<leader>t",
+    group = "Telescope"
+}, {
+    "<leader>b",
+    group = "Buffer"
+}, {
+    "<leader>c",
+    group = "Comments", icon = '#'
+}})
+vim.cmd.colorscheme "gruvbox"
 
 local cmp = require('cmp')
 cmp.setup({
@@ -44,61 +68,62 @@ local opts = {
     silent = true
 }
 
--- Configura a opção 'whichwrap' no Lua
-vim.o.whichwrap = '<,>,[,],h,l'
-
-local function opts_descr(desc)
+local function opts_descr(desc, ignore)
+    ignore = ignore or false
+    if ignore == true then
+        desc = "which_key_ignore"
+    end
     opts["desc"] = desc
     return opts
+
 end
 
--- Define as opções padrão
-local base_opts = {
-    noremap = true,
-    silent = true
-}
+vim.keymap.set('n', '<C-b>', '<cmd>ToggleTerm size=50<CR>')
+vim.keymap.set('t', '<C-b>', '<cmd>ToggleTerm<CR>')
+vim.keymap.set('t', '<C-A-b>', '<cmd>2:ToggleTerm<CR>')
+vim.keymap.set('t', '<C-g>', '<C-\\><C-N>')
 
--- Função para adicionar descrições às opções
-local function opts_descr(desc)
-    return vim.tbl_extend('force', base_opts, {
-        desc = desc
-    })
-end
+vim.keymap.set({'n', 'v', 'i'}, '<S-k>', '3k')
+vim.keymap.set({'n', 'v', 'i'}, '<S-j>', '3j')
+vim.keymap.set({'n', 'v', 'i'}, '<S-h>', 'b')
+vim.keymap.set({'n', 'v', 'i'}, '<S-l>', 'e')
 
--- Mapeamentos com descrições
-vim.api.nvim_set_keymap('n', '<C-b>', '<cmd>ToggleTerm size=50<CR>', base_opts)
-vim.api.nvim_set_keymap('t', '<C-b>', '<cmd>ToggleTerm<CR>', base_opts)
-vim.api.nvim_set_keymap('t', '<C-A-b>', '<cmd>2:ToggleTerm<CR>', base_opts)
-vim.api.nvim_set_keymap('t', '<C-g>', '<C-\\><C-N>', base_opts)
-vim.keymap.set("n","<Tab>",">>",  opts)
-vim.keymap.set("n","<S-Tab>","<<",  opts)
-vim.keymap.set("v","<Tab>",">gv", opts)
-vim.keymap.set("v","<S-Tab>","<gv", opts)
+vim.keymap.set("v", "<Tab>", ">gv")
+vim.keymap.set("v", "<S-Tab>", "<gv")
+vim.keymap.set('n', '<Tab>', ':bnext<CR>')
+vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>')
 
-vim.api.nvim_set_keymap('i', '{', '{}<Esc>ha', base_opts)
-vim.api.nvim_set_keymap('i', '(', '()<Esc>ha', base_opts)
-vim.api.nvim_set_keymap('i', '[', '[]<Esc>ha', base_opts)
-vim.api.nvim_set_keymap('i', '"', '""<Esc>ha', base_opts)
-vim.api.nvim_set_keymap('i', "'", "''<Esc>ha", base_opts)
-vim.api.nvim_set_keymap('i', '`', '``<Esc>ha', base_opts)
+vim.keymap.set('i', '{', '{}<Esc>ha')
+vim.keymap.set('i', '(', '()<Esc>ha')
+vim.keymap.set('i', '[', '[]<Esc>ha')
+vim.keymap.set('i', '"', '""<Esc>ha')
+vim.keymap.set('i', "'", "''<Esc>ha")
+vim.keymap.set('i', '`', '``<Esc>ha')
+vim.keymap.set('i', '<', '<><Esc>ha')
 
-vim.api.nvim_set_keymap('n', '<A-j>', ':m .1<CR>', base_opts)
-vim.api.nvim_set_keymap('n', '<A-k>', ':m .-2<CR>', base_opts)
+vim.keymap.set('v', '{', 'c{}<Esc>hp')
+vim.keymap.set('v', '(', 'c()<Esc>hp')
+vim.keymap.set('v', '[', 'c[]<Esc>hp')
+vim.keymap.set('v', '"', 'c""<Esc>hp')
+vim.keymap.set('v', "'", "c''<Esc>hp")
+vim.keymap.set('v', '`', 'c``<Esc>hp')
+vim.keymap.set('v', '<', 'c<><Esc>hp')
 
-vim.api.nvim_set_keymap('i', '<A-k>', '<CMD>m .-2<CR>', base_opts)
-vim.api.nvim_set_keymap('i', '<A-j>', '<CMD>m .1<CR>', base_opts)
+vim.keymap.set({'n', 'i'}, '<A-j>', '<CMD>m .1<CR>')
+vim.keymap.set({'n', 'i'}, '<A-k>', '<CMD>m .-2<CR>')
+vim.keymap.set("v", "<A-j>", ":m '>1<CR>gv=gv")
+vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
 
-vim.api.nvim_set_keymap("v", "<A-j>", ":m '>1<CR>gv=gv", base_opts)
-vim.api.nvim_set_keymap("v", "<A-k>", ":m '<-2<CR>gv=gv", base_opts)
+vim.keymap.set('n', '<leader>i', require("nvim-tree.api").tree.change_root_to_node, opts_descr("Change Root", true))
 
-vim.keymap.set('n', '<leader>i', require("nvim-tree.api").tree.change_root_to_node, opts_descr("Change Root"))
 vim.api.nvim_set_keymap('n', '<leader>ç', ':qa<CR>', opts_descr("EXIT"))
-vim.api.nvim_set_keymap('n', '<leader>q', ':q<CR>', opts_descr("Close Windows"))
-vim.api.nvim_set_keymap('n', '<leader>h', '<C-w>h', opts_descr("Left window"))
-vim.api.nvim_set_keymap('n', '<leader>j', '<C-w>j', opts_descr("Bottom window"))
-vim.api.nvim_set_keymap('n', '<leader>k', '<C-w>k', opts_descr("Top window"))
-vim.api.nvim_set_keymap('n', '<leader>l', '<C-w>l', opts_descr("Right window"))
-vim.api.nvim_set_keymap('n', '<leader>e', ':NvimTreeToggle<CR>', opts_descr("Toggle Tree"))
+vim.api.nvim_set_keymap('n', '<leader>z', ':noh<CR>', opts_descr("Hightlight off", true))
+vim.api.nvim_set_keymap('n', '<leader>q', ':q<CR>', opts_descr("Close Windows", true))
+vim.api.nvim_set_keymap('n', '<leader>h', '<C-w>h', opts_descr("Left window", true))
+vim.api.nvim_set_keymap('n', '<leader>j', '<C-w>j', opts_descr("Bottom window", true))
+vim.api.nvim_set_keymap('n', '<leader>k', '<C-w>k', opts_descr("Top window", true))
+vim.api.nvim_set_keymap('n', '<leader>l', '<C-w>l', opts_descr("Right window", true))
+vim.api.nvim_set_keymap('n', '<leader>e', ':NvimTreeToggle<CR>', opts_descr("Toggle Tree", true))
 
 vim.api.nvim_set_keymap('n', '<leader>gn', "<cmd>lua require('gitsigns').next_hunk()<CR>", opts_descr("Next hunk"))
 vim.api.nvim_set_keymap('n', '<leader>gp', "<cmd>lua require('gitsigns').prev_hunk()<CR>", opts_descr("Previous hunk"))
@@ -138,8 +163,5 @@ vim.api.nvim_set_keymap('n', '<leader>fa', '<cmd>lua vim.lsp.buf.code_action()<C
 
 vim.api.nvim_set_keymap('n', '<leader>bn', ':bnext<CR>', opts_descr("Go to next buffer"))
 vim.api.nvim_set_keymap('n', '<leader>bb', ':bprevious<CR>', opts_descr("Go to previous buffer"))
-vim.api.nvim_set_keymap('n', '<leader>bc', ':bdelete<CR>:bnext<CR>', opts_descr("Close current buffer"))
-vim.api.nvim_set_keymap('n', '<Tab>', ':bnext<CR>', opts_descr("Go to next buffer"))
-vim.api.nvim_set_keymap('n', '<S-Tab>', ':bprevious<CR>', opts_descr("Go to previous buffer"))
-vim.api.nvim_set_keymap('n', '<leader><Tab>', ':bdelete<CR>:bnext<CR>', opts_descr("Close current buffer"))
-vim.api.nvim_set_keymap('n', '<leader>z', ':noh<CR>', opts_descr("Hightlight off"))
+vim.api.nvim_set_keymap('n', '<leader>bc', ':bdelete<CR>', opts_descr("Close current buffer"))
+vim.api.nvim_set_keymap('n', '<leader><Tab>', ':bdelete<CR>:bnext<CR>', opts_descr("Close current buffer", true))
