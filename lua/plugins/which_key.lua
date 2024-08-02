@@ -3,7 +3,7 @@ return {
     opts = {
         win = {
             no_overlap = true,
-            width = 80,
+            width = 100,
             col = 0.5,
             title = false,
         },
@@ -11,13 +11,12 @@ return {
             width = {
                 min = 10,
                 max = 50,
-            }, 
-            spacing = 5 
+            },
+            spacing = 10
         },
-        triggers = {{
+        triggers = { {
             "<leader>",
-            mode = {"n", "v"}
-        }}
+            mode = { "n", "v" }
+        } }
     },
 }
-

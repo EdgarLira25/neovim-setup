@@ -7,10 +7,8 @@ return {
             ["Add Cursor Up"] = "<C-A-K>",
             ['Find Under'] = '<C-d>',
             ['Find Subword Under'] = '<C-d>',
-            ['Select l'] = '<C-l>',
-            ['Select h'] = '<C-h>',
-            ['Select j'] = '<C-j>',
-            ['Select k'] = '<C-k>'
+            ['Select l'] = '<C-A-l>',
+            ['Select h'] = '<C-A-h>',
         }
     end
 }

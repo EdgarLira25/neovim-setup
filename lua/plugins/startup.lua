@@ -22,10 +22,6 @@ return {
 [[  h:::::h     h:::::h  ee:::::::::::::e  l::::::ll::::::l oo:::::::::::oo                w:::w           w:::w           oo:::::::::::oo  r:::::r            l::::::l  d:::::::::ddd::::d ]],
 [[  hhhhhhh     hhhhhhh    eeeeeeeeeeeeee  llllllllllllllll   ooooooooooo                   www             www              ooooooooooo    rrrrrrr            llllllll   ddddddddd   ddddd ]],
 
-
-
-
-
          }
          dashboard.section.buttons.val = {
             dashboard.button("p", "  Projects", ":Telescope projects<CR>"),
@@ -36,8 +32,6 @@ return {
             dashboard.button("u", "  Update plugins", ":Lazy sync<CR>"),
             dashboard.button("q", "󰅚  Quit NVIM", ":qa<CR>"),
         }
-        
-        
          local handle = io.popen('fortune')
          local fortune = handle:read("*a")
          handle:close()
