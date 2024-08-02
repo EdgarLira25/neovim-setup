@@ -2,10 +2,10 @@ vim.g.mapleader = " "
 vim.o.number = true
 vim.o.background = "dark"
 vim.o.autoread = true
-vim.o.tabstop = 4 -- A TAB character looks like 4 spaces
+vim.o.tabstop = 4      -- A TAB character looks like 4 spaces
 vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
-vim.o.softtabstop = 4 -- Number of spaces inserted instead of a TAB character
-vim.o.shiftwidth = 4 -- Number of spaces inserted when indenting
+vim.o.softtabstop = 4  -- Number of spaces inserted instead of a TAB character
+vim.o.shiftwidth = 4   -- Number of spaces inserted when indenting
 vim.o.whichwrap = '<,>,[,],h,l'
 
 vim.cmd([[
@@ -14,16 +14,20 @@ vim.cmd([[
 
 vim.opt.termguicolors = true
 vim.api.nvim_set_option("clipboard", "unnamed")
-vim.keymap.set({'n', 'v'}, 'y', '"+y')
-vim.keymap.set({'n', 'v'}, 'p', '"+p')
+vim.keymap.set({ 'n', 'v' }, 'y', '"+y')
+vim.keymap.set({ 'n', 'v' }, 'p', '"+p')
 
 require("config.lazy")
-
+require("mason").setup()
+require("mason-lspconfig").setup()
+local lspconfig = require('lspconfig')
+lspconfig.lua_ls.setup {}
 wk = require('which-key')
 
-wk.add({{
+wk.add({ {
     "<leader>f",
-    group = "LSP", icon =  '+'
+    group = "LSP",
+    icon = '+'
 }, {
     "<leader>g",
     group = "GIT"
@@ -35,10 +39,10 @@ wk.add({{
     group = "Buffer"
 }, {
     "<leader>c",
-    group = "Comments", icon = '#'
-}})
+    group = "Comments",
+    icon = '#'
+} })
 vim.cmd.colorscheme "gruvbox"
-
 local cmp = require('cmp')
 cmp.setup({
     snippet = {
@@ -54,11 +58,11 @@ cmp.setup({
         }),
         ['<C-space>'] = cmp.mapping.complete()
     },
-    sources = {{
+    sources = { {
         name = 'nvim_lsp'
     }, {
         name = 'buffer'
-    }}
+    } }
 })
 
 local opts = {
@@ -73,7 +77,6 @@ local function opts_descr(desc, ignore)
     end
     opts["desc"] = desc
     return opts
-
 end
 
 vim.keymap.set('n', '<C-b>', '<cmd>ToggleTerm size=50<CR>')
@@ -81,10 +84,10 @@ vim.keymap.set('t', '<C-b>', '<cmd>ToggleTerm<CR>')
 vim.keymap.set('t', '<C-A-b>', '<cmd>2:ToggleTerm<CR>')
 vim.keymap.set('t', '<C-g>', '<C-\\><C-N>')
 
-vim.keymap.set({'n', 'v', 'i'}, '<S-k>', '3k')
-vim.keymap.set({'n', 'v', 'i'}, '<S-j>', '3j')
-vim.keymap.set({'n', 'v', 'i'}, '<S-h>', 'b')
-vim.keymap.set({'n', 'v', 'i'}, '<S-l>', 'e')
+vim.keymap.set({ 'n', 'v', 'i' }, '<S-k>', '3k')
+vim.keymap.set({ 'n', 'v', 'i' }, '<S-j>', '3j')
+vim.keymap.set({ 'n', 'v', 'i' }, '<S-h>', 'b')
+vim.keymap.set({ 'n', 'v', 'i' }, '<S-l>', 'e')
 
 vim.keymap.set("v", "<Tab>", ">gv")
 vim.keymap.set("v", "<S-Tab>", "<gv")
@@ -107,8 +110,8 @@ vim.keymap.set('v', "'", "c''<Esc>hp")
 vim.keymap.set('v', '`', 'c``<Esc>hp')
 vim.keymap.set('v', '<', 'c<><Esc>hp')
 
-vim.keymap.set({'n', 'i'}, '<A-j>', '<CMD>m .1<CR>')
-vim.keymap.set({'n', 'i'}, '<A-k>', '<CMD>m .-2<CR>')
+vim.keymap.set({ 'n', 'i' }, '<A-j>', '<CMD>m .1<CR>')
+vim.keymap.set({ 'n', 'i' }, '<A-k>', '<CMD>m .-2<CR>')
 vim.keymap.set("v", "<A-j>", ":m '>1<CR>gv=gv")
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
 
@@ -135,13 +138,13 @@ vim.api.nvim_set_keymap('n', '<leader>gD', "<cmd>lua require('gitsigns').diffthi
 vim.api.nvim_set_keymap('n', '<leader>gd', "<cmd>lua require('gitsigns').toggle_deleted()<CR>",
     opts_descr("Toggle deleted"))
 
-vim.api.nvim_set_keymap('n', '<leader>tp', ':Telescope find_files<CR>', opts_descr("Find files with Telescope"))
-vim.api.nvim_set_keymap('n', '<leader>tl', ':Telescope live_grep<CR>', opts_descr("Live grep with Telescope"))
-vim.api.nvim_set_keymap('n', '<leader>tb', ':Telescope buffers<CR>', opts_descr("List buffers with Telescope"))
-vim.api.nvim_set_keymap('v', '<leader>tb', ':Telescope buffers<CR>', opts_descr("List buffers with Telescope"))
-
+vim.api.nvim_set_keymap('n', '<leader>tp', ':Telescope find_files<CR>', opts_descr("Find files"))
+vim.api.nvim_set_keymap('n', '<leader>tl', ':Telescope live_grep<CR>', opts_descr("Live grep"))
+vim.api.nvim_set_keymap('n', '<leader>tb', ':Telescope buffers<CR>', opts_descr("List buffers"))
+vim.api.nvim_set_keymap('n', '<leader>tl', ':Telescope live_grep<CR>', opts_descr("Live grep"))
+vim.api.nvim_set_keymap('n', '<leader>tg', ':Telescope git_status<CR>', opts_descr("List Git Status"))
 vim.api.nvim_set_keymap('v', '<leader>tw', 'y:Telescope live_grep default_text=<C-r>"<CR>',
-    opts_descr("Grep selection with Telescope"))
+    opts_descr("Grep selection"))
 
 vim.api.nvim_set_keymap('n', '<leader>fd', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts_descr("Go to declaration"))
 vim.api.nvim_set_keymap('n', '<leader>fg', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts_descr("Show hover info"))
@@ -163,3 +166,4 @@ vim.api.nvim_set_keymap('n', '<leader>bn', ':bnext<CR>', opts_descr("Go to next 
 vim.api.nvim_set_keymap('n', '<leader>bb', ':bprevious<CR>', opts_descr("Go to previous buffer"))
 vim.api.nvim_set_keymap('n', '<leader>bc', ':bdelete<CR>', opts_descr("Close current buffer"))
 vim.api.nvim_set_keymap('n', '<leader><Tab>', ':bdelete<CR>:bnext<CR>', opts_descr("Close current buffer", true))
+
