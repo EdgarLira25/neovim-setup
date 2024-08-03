@@ -1,7 +1,20 @@
 return {
     'neovim/nvim-lspconfig',
-    dependencies = { { 'hrsh7th/cmp-nvim-lsp' },  { 'hrsh7th/nvim-cmp' }},
+    dependencies = { { 'hrsh7th/cmp-nvim-lsp' }, { 'hrsh7th/nvim-cmp' } },
     config = function()
+        local cmp = require 'cmp'
+        cmp.setup({
+            mapping = {
+                ['<Tab>'] = cmp.mapping.select_next_item(),
+                ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+                ['<Enter>'] = cmp.mapping.confirm({
+                    select = true
+                }),
+                ['<C-space>'] = cmp.mapping.complete()
+            },
+            sources = { { name = 'nvim_lsp' } }
+        })
+
         require('lspconfig').pyright.setup({
             filetypes = { 'python' }
         })
