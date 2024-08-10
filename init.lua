@@ -17,7 +17,10 @@ vim.api.nvim_set_option("clipboard", "unnamedplus")
 require("config.lazy")
 local wk = require('which-key')
 
-vim.cmd.colorscheme "gruvbox"
+-- vim.cmd.colorscheme "gruvbox"
+vim.cmd.colorscheme "github_dark"
+-- vim.cmd.colorscheme "kanagawa"
+
 
 local function opts_descr(desc, ignore)
     ignore = ignore or false
@@ -34,20 +37,22 @@ local function opts_descr(desc, ignore)
 end
 
 setter = vim.keymap.set
-setter({ 'n', 't' }, '<C-b>', '<cmd>ToggleTerm<CR>')
 
+setter({ 'n', 't' }, '<C-b>', '<cmd>ToggleTerm<CR>')
+setter('v', 'p', '"_dP')
+setter({ 'n', 'v' }, 'd', '"_d')
 setter('i', '<C-v>', '<Esc>v')
 setter({ 'n', 'v' }, '<C-k>', '3k')
 setter({ 'n', 'v' }, '<C-j>', '3j')
 setter({ 'n', 'v' }, '<C-h>', 'b')
 setter({ 'n', 'v' }, '<C-l>', 'e')
 
-setter('i', '<C-k>', '<C-o>k')
-setter('i', '<C-j>', '<C-o>j')
-setter('i', '<C-h>', '<C-o>h')
-setter('i', '<C-l>', '<C-o>l')
+setter('i', '<C-k>', '<Up>')
+setter('i', '<C-j>', '<Down>')
+setter('i', '<C-h>', '<Left>')
+setter('i', '<C-l>', '<Right>')
 
-setter('i', '<C-d>', '<C-o>dw')
+setter('i', '<C-d>', '<C-o>"_dw')
 setter('i', '<C-u>', '<C-o>u')
 setter('i', '<C-r>', '<C-o><C-r>')
 
@@ -130,3 +135,30 @@ mapper('n', '<leader>bb', ':bprevious<CR>', opts_descr("Go to previous buffer"))
 mapper('n', '<leader>bc', ':bdelete<CR>', opts_descr("Close current buffer"))
 mapper('n', '<leader>bd', ':bufdo bd<CR>', opts_descr("Clear All Buffers"))
 mapper('n', '<leader><Tab>', ':bdelete<CR>:bnext<CR>', opts_descr("Close current buffer", true))
+
+vim.opt.wildignore:append({
+    "blue.vim",
+    "darkblue.vim",
+    "delek.vim",
+    "desert.vim",
+    "elflord.vim",
+    "evening.vim",
+    "industry.vim",
+    "habamax.vim",
+    "koehler.vim",
+    "lunaperche.vim",
+    "morning.vim",
+    "murphy.vim",
+    "pablo.vim",
+    "peachpuff.vim",
+    "quiet.vim",
+    "ron.vim",
+    "shine.vim",
+    "slate.vim",
+    "sorbet.vim",
+    "retrobox.vim",
+    "torte.vim",
+    "wildcharm.vim",
+    "zaibatsu.vim",
+    "zellner.vim",
+})
