@@ -21,7 +21,6 @@ vim.api.nvim_set_option("clipboard", "unnamedplus")
 
 require("config.lazy")
 local wk = require('which-key')
-vim.cmd.colorscheme "github_dark"
 
 setter = vim.keymap.set
 setter({ 'n', 't' }, '<C-b>', '<cmd>ToggleTerm<CR>')
