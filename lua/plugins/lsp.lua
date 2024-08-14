@@ -15,7 +15,8 @@ return {
             sources = { { name = 'nvim_lsp' } }
         })
         require('lspconfig').pyright.setup({
-            filetypes = { 'python' }
+            filetypes = { 'python' },
+            settings = { python = { analysis = { autoImportCompletions = false }, typeCheckingMode = "strict" } }
         })
         require('lspconfig').tsserver.setup({
             filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },

@@ -1,3 +1,11 @@
+local function opts_descr(desc, ignore)
+    return {
+        noremap = true,
+        silent = true,
+        desc = ignore and "which_key_ignore" or desc
+    }
+end
+
 vim.g.mapleader = " "
 vim.o.number = true
 vim.o.background = "dark"
@@ -7,37 +15,15 @@ vim.o.expandtab = true
 vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 vim.o.whichwrap = '<,>,[,],h,l'
-
 vim.cmd([[ autocmd FocusGained,BufEnter * checktime ]])
 
 vim.api.nvim_set_option("clipboard", "unnamedplus")
--- vim.keymap.set({ 'n', 'v' }, 'y', '"+y')
--- vim.keymap.set({ 'n', 'v' }, 'p', '"+p')
 
 require("config.lazy")
 local wk = require('which-key')
-
--- vim.cmd.colorscheme "gruvbox"
 vim.cmd.colorscheme "github_dark"
--- vim.cmd.colorscheme "kanagawa"
-
-
-local function opts_descr(desc, ignore)
-    ignore = ignore or false
-
-    if ignore == true then
-        desc = "which_key_ignore"
-    end
-
-    return {
-        noremap = true,
-        silent = true,
-        desc = desc
-    }
-end
 
 setter = vim.keymap.set
-
 setter({ 'n', 't' }, '<C-b>', '<cmd>ToggleTerm<CR>')
 setter('v', 'p', '"_dP')
 setter({ 'n', 'v' }, 'd', '"_d')
@@ -46,21 +32,17 @@ setter({ 'n', 'v' }, '<C-k>', '3k')
 setter({ 'n', 'v' }, '<C-j>', '3j')
 setter({ 'n', 'v' }, '<C-h>', 'b')
 setter({ 'n', 'v' }, '<C-l>', 'e')
-
-setter('i', '<C-k>', '<Up>')
-setter('i', '<C-j>', '<Down>')
-setter('i', '<C-h>', '<Left>')
-setter('i', '<C-l>', '<Right>')
-
-setter('i', '<C-d>', '<C-o>"_dw')
-setter('i', '<C-u>', '<C-o>u')
-setter('i', '<C-r>', '<C-o><C-r>')
-
 setter("v", "<Tab>", ">gv")
 setter("v", "<S-Tab>", "<gv")
 setter('n', '<Tab>', ':bnext<CR>')
 setter('n', '<S-Tab>', ':bprevious<CR>')
-
+setter('i', '<C-k>', '<Up>')
+setter('i', '<C-j>', '<Down>')
+setter('i', '<C-h>', '<Left>')
+setter('i', '<C-l>', '<Right>')
+setter('i', '<C-d>', '<C-o>"_dw')
+setter('i', '<C-u>', '<C-o>u')
+setter('i', '<C-r>', '<C-o><C-r>')
 setter('i', '{', '{}<Esc>ha')
 setter('i', '(', '()<Esc>ha')
 setter('i', '[', '[]<Esc>ha')
@@ -68,7 +50,7 @@ setter('i', '"', '""<Esc>ha')
 setter('i', "'", "''<Esc>ha")
 setter('i', '`', '``<Esc>ha')
 setter('i', '<', '<><Esc>ha')
-
+setter('i', '<C-S-l>', "<delete>")
 setter('v', '{', 'c{}<Esc>hp')
 setter('v', '(', 'c()<Esc>hp')
 setter('v', '[', 'c[]<Esc>hp')
@@ -76,19 +58,16 @@ setter('v', '"', 'c""<Esc>hp')
 setter('v', "'", "c''<Esc>hp")
 setter('v', '`', 'c``<Esc>hp')
 setter('v', '<', 'c<><Esc>hp')
-
 setter({ 'n', 'i' }, '<A-j>', '<CMD>m .1<CR>')
 setter({ 'n', 'i' }, '<A-k>', '<CMD>m .-2<CR>')
 setter("v", "<A-j>", ":m '>1<CR>gv=gv")
 setter("v", "<A-k>", ":m '<-2<CR>gv=gv")
-
 setter('n', '<leader>i', require('nvim-tree.api').tree.change_root_to_node, opts_descr("Change Root", true))
 
 
 mapper = vim.api.nvim_set_keymap
-wk.add { { "<leader>c", group = "Comments", icon = '#' } }
 
--- WK Ignore Group
+wk.add { { "<leader>c", group = "Comments", icon = '#' } }
 mapper('n', '<leader>ç', ':qa<CR>', opts_descr("EXIT"))
 mapper('n', '<leader>z', ':noh<CR>', opts_descr("Hightlight off", true))
 mapper('n', '<leader>q', ':q<CR>', opts_descr("Close Windows", true))
@@ -135,30 +114,3 @@ mapper('n', '<leader>bb', ':bprevious<CR>', opts_descr("Go to previous buffer"))
 mapper('n', '<leader>bc', ':bdelete<CR>', opts_descr("Close current buffer"))
 mapper('n', '<leader>bd', ':bufdo bd<CR>', opts_descr("Clear All Buffers"))
 mapper('n', '<leader><Tab>', ':bdelete<CR>:bnext<CR>', opts_descr("Close current buffer", true))
-
-vim.opt.wildignore:append({
-    "blue.vim",
-    "darkblue.vim",
-    "delek.vim",
-    "desert.vim",
-    "elflord.vim",
-    "evening.vim",
-    "industry.vim",
-    "habamax.vim",
-    "koehler.vim",
-    "lunaperche.vim",
-    "morning.vim",
-    "murphy.vim",
-    "pablo.vim",
-    "peachpuff.vim",
-    "quiet.vim",
-    "ron.vim",
-    "shine.vim",
-    "slate.vim",
-    "sorbet.vim",
-    "retrobox.vim",
-    "torte.vim",
-    "wildcharm.vim",
-    "zaibatsu.vim",
-    "zellner.vim",
-})
