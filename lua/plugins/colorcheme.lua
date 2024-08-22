@@ -1,8 +1,7 @@
 return {
-    "projekt0n/github-nvim-theme",
-
+    "catppuccin/nvim",
     config = function()
-        require('github-theme').setup({ options = { transparent = false } })
-        vim.cmd('colorscheme github_dark')
+        require("catppuccin").setup({})
+        vim.cmd('colorscheme catppuccin-frappe')
     end
 }
