@@ -1,7 +1,7 @@
 return {
     'numToStr/Comment.nvim',
     config = function()
-        require('Comment').setup({
+        require('Comment').setup{
             padding = true,
             sticky = true,
             ignore = nil,
@@ -11,6 +11,6 @@ return {
             mappings = { basic = true, extra = false },
             pre_hook = nil,
             post_hook = nil,
-        })
+        }
     end
 }
