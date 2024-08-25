@@ -16,3 +16,5 @@ vim.opt.shiftwidth = 4
 vim.opt.smartindent = true
 vim.opt.whichwrap = '[,],h,l'
 vim.opt.clipboard = 'unnamedplus'
+vim.opt.title = true
+vim.opt.cursorline = true
