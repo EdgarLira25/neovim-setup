@@ -3,6 +3,7 @@ return {
     branch = 'master',
     init = function()
         vim.g.VM_maps = {
+            ['Exit'] = '<C-c>',
             ["Add Cursor Down"] = "<C-A-j>",
             ["Add Cursor Up"] = "<C-A-K>",
             ['Find Under'] = '<C-d>',

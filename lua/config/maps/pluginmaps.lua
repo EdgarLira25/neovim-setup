@@ -16,10 +16,6 @@ map('n', '<leader>i', "<CMD>lua require('nvim-tree.api').tree.change_root_to_nod
 map('n', '<leader>ç', ':qa<CR>', opts_descr("EXIT"))
 map('n', '<leader>z', ':noh<CR>', opts_descr("Hightlight off", true))
 map('n', '<leader>q', ':q<CR>', opts_descr("Close Windows", true))
-map('n', '<leader>h', '<C-w>h', opts_descr("Left window", true))
-map('n', '<leader>j', '<C-w>j', opts_descr("Bottom window", true))
-map('n', '<leader>k', '<C-w>k', opts_descr("Top window", true))
-map('n', '<leader>l', '<C-w>l', opts_descr("Right window", true))
 map("n", "<leader>s", ":ASToggle<CR>", opts_descr("On/Off Auto Save", true))
 map('n', '<leader>e', ':NvimTreeToggle<CR>', opts_descr("Toggle Tree", true))
 
@@ -54,8 +50,8 @@ map('n', '<leader>fl', '<CMD>lua vim.lsp.buf.format()<CR>', opts_descr("Format c
 map('n', '<leader>fa', '<CMD>lua vim.lsp.buf.code_action()<CR>', opts_descr("Import"))
 
 wk.add { { "<leader>b", group = "Buffer" } }
-map('n', '<leader>bn', ':bnext<CR>', opts_descr("Go to next buffer"))
-map('n', '<leader>bb', ':bprevious<CR>', opts_descr("Go to previous buffer"))
+map('n', '<Tab>', ':bnext<CR>', opts_descr("Go to next buffer", true))
+map('n', '<S-Tab>', ':bprevious<CR>', opts_descr("Go to previous buffer", true))
 map('n', '<leader>bc', ':bdelete<CR>', opts_descr("Close current buffer"))
 map('n', '<leader>bd', ':bufdo bd<CR>', opts_descr("Clear All Buffers"))
 map('n', '<leader><Tab>', ':bdelete<CR>:bnext<CR>', opts_descr("Close current buffer", true))
