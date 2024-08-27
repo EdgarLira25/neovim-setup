@@ -7,7 +7,6 @@ set({ 'n', 't' }, '<C-b>', '<cmd>ToggleTerm<CR>')
 set("v", "<Tab>", ">gv")
 set("v", "<S-Tab>", "<gv")
 
---Change Buffers
 -- easy life
 set('v', 'p', '"_dP')
 set('i', '<C-c>', '<Esc>')
