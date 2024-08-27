@@ -19,4 +19,12 @@ return {
             mode = { "n", "v" }
         } }
     },
+    init = function()
+        require("which-key").add({ { "<leader>c", group = "Comments", icon = '#' },
+            { "<leader>g", group = "GIT" },
+            { "<leader>t", group = "Telescope" },
+            { "<leader>b", group = "Buffer" },
+            { "<leader>f", group = "LSP", icon = '+' }
+        })
+    end
 }

@@ -1,3 +1,4 @@
+vim.g.mapleader = " "
 require("config.base.options")
 require("config.base.autocmds")
 require("config.manager.lazy")
