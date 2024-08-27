@@ -48,6 +48,7 @@ map('n', '<leader>fn', '<CMD>lua vim.diagnostic.goto_next()<CR>', opts_descr("Go
 map('n', '<leader>ff', '<CMD>lua vim.diagnostic.open_float()<CR>', opts_descr("Show diagnostics in float"))
 map('n', '<leader>fl', '<CMD>lua vim.lsp.buf.format()<CR>', opts_descr("Format code"))
 map('n', '<leader>fa', '<CMD>lua vim.lsp.buf.code_action()<CR>', opts_descr("Import"))
+map('n', '<leader>fp', '<CMD>LspRestart<CR>', opts_descr("Lsp Restart"))
 
 wk.add { { "<leader>b", group = "Buffer" } }
 map('n', '<Tab>', ':bnext<CR>', opts_descr("Go to next buffer", true))
