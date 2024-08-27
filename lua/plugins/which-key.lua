@@ -24,7 +24,7 @@ return {
             { "<leader>g", group = "GIT" },
             { "<leader>t", group = "Telescope" },
             { "<leader>b", group = "Buffer" },
-            { "<leader>f", group = "LSP", icon = '+' }
+            { "<leader>f", group = "LSP",      icon = '+' }
         })
     end
 }

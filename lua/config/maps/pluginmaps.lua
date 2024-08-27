@@ -20,7 +20,8 @@ set('n', '<leader>gg', "<CMD>lua require('gitsigns').preview_hunk()<CR>", opts_d
 set('n', '<leader>gD', "<CMD>lua require('gitsigns').diffthis()<CR>", opts_descr("Diff"))
 set('n', '<leader>gd', "<CMD>lua require('gitsigns').toggle_deleted()<CR>", opts_descr("Toggle deleted"))
 
--- Telescope', '<leader>tp', '<CMD>Telescope find_files<CR>', opts_descr("Find files"))
+-- Telescope
+set('n', '<leader>tp', '<CMD>Telescope find_files<CR>', opts_descr("Find files"))
 set('n', '<leader>tl', '<CMD>Telescope live_grep<CR>', opts_descr("Live grep"))
 set('n', '<leader>tb', '<CMD>Telescope buffers<CR>', opts_descr("List buffers"))
 set('n', '<leader>tg', '<CMD>Telescope git_status<CR>', opts_descr("List Git Status"))

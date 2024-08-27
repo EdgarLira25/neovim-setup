@@ -35,4 +35,3 @@ function _G.opts_descr(desc, ignore)
         desc = ignore and "which_key_ignore" or desc
     }
 end
-
