@@ -1,5 +1,12 @@
 require("config.maps.helpers")
 
+require("which-key").add({ { "<leader>c", group = "Comments", icon = '#' },
+    { "<leader>g", group = "GIT" },
+    { "<leader>t", group = "Telescope" },
+    { "<leader>b", group = "Buffer" },
+    { "<leader>f", group = "LSP",      icon = '+' }
+})
+
 -- Basic
 set({ 'n', 't' }, '<C-b>', '<CMD>ToggleTerm<CR>', opts_descr("Terminal", true))
 set('n', '<leader>i', "<CMD>lua require('nvim-tree.api').tree.change_root_to_node()<CR>",
