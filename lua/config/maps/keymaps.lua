@@ -1,5 +1,31 @@
-local set = vim.keymap.set
+function _G.smart_backspace()
+    local line = vim.api.nvim_get_current_line()
+    local col = vim.api.nvim_win_get_cursor(0)[2]
+    local prev_char = vim.fn.strcharpart(line, col - 1, 1)
+    local next_char = vim.fn.strcharpart(line, col, 1)
+    local pairs = {
+        ['('] = ')',
+        ['{'] = '}',
+        ['['] = ']',
+        ['"'] = '"',
+        ["'"] = "'",
+        ["<"] = ">"
+    }
+    if pairs[prev_char] == next_char then
+        return '<Right><BS><BS>'
+    end
+    return '<BS>'
+end
 
+function _G.autopairs(open_char, close_char)
+    local next_char = vim.fn.strcharpart(vim.api.nvim_get_current_line(), vim.api.nvim_win_get_cursor(0)[2], 1)
+    if vim.fn.mode() == "i" and vim.tbl_contains({ "", " ", "]", ")", "}", '"', "'" }, next_char) then
+        return open_char .. close_char .. "<Left>"
+    end
+    return open_char
+end
+
+local set = vim.keymap.set
 -- Integrated Terminal
 set({ 'n', 't' }, '<C-b>', '<cmd>ToggleTerm<CR>')
 
@@ -9,7 +35,7 @@ set("v", "<S-Tab>", "<gv")
 
 -- easy life
 set('v', 'p', '"_dP')
-set('i', '<C-c>', '<Esc>')
+set({ 'i', 'v' }, '<C-c>', '<Esc>')
 set({ 'n', 'v' }, 'd', '"_d')
 set('i', '<C-d>', '<C-o>"_dw')
 set('i', '<C-S-l>', "<delete>")
@@ -41,6 +67,15 @@ set('i', '<C-k>', '<Up>')
 set('i', '<C-j>', '<Down>')
 set('i', '<C-h>', '<Left>')
 set('i', '<C-l>', '<Right>')
+
+local opts = { expr = true, noremap = true }
+set('i', '(', 'v:lua.autopairs("(", ")")', opts)
+set('i', '[', 'v:lua.autopairs("[", "]")', opts)
+set('i', '{', 'v:lua.autopairs("{", "}")', opts)
+set('i', '<', 'v:lua.autopairs("<", ">")', opts)
+set('i', "'", 'v:lua.autopairs("\'", "\'")', opts)
+set('i', '"', 'v:lua.autopairs(\'"\', \'"\' )', opts)
+set('i', '<BS>', 'v:lua.smart_backspace()', opts)
 
 -- del unused key map
 vim.keymap.del('n', 'gc')

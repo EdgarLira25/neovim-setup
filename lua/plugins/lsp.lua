@@ -16,7 +16,7 @@ return {
         })
         require('lspconfig').pyright.setup({
             filetypes = { 'python' },
-            settings = { python = { analysis = { autoImportCompletions = true }, typeCheckingMode = "standard" } }
+            settings = { python = { analysis = { autoImportCompletions = false }, typeCheckingMode = "strict" } }
         })
         require('lspconfig').tsserver.setup({
             filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
