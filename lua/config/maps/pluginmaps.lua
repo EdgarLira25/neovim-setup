@@ -35,6 +35,7 @@ set('n', '<leader>tg', '<CMD>Telescope git_status<CR>', opts_descr("List Git Sta
 set('v', '<leader>tw', 'y:Telescope live_grep default_text=<C-r>"<CR>', opts_descr("Grep selection"))
 
 -- LSP
+set('n', '<leader>fd', '<CMD>lua vim.lsp.buf.declaration()<CR>', opts_descr("Go to declaration"))
 set('n', '<leader>fg', '<CMD>lua vim.lsp.buf.hover()<CR>', opts_descr("Show hover info"))
 set('n', '<leader>fi', '<CMD>lua vim.lsp.buf.implementation()<CR>', opts_descr("Go to implementation"))
 set('n', '<leader>fh', '<CMD>lua vim.lsp.buf.signature_help()<CR>', opts_descr("Show signature help"))
