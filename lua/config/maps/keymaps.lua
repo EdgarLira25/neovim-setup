@@ -39,6 +39,7 @@ set("v", "<A-k>", ":m '<-2<CR>gv=gv")
 -- movement keymaps
 set({ 'n', 'v' }, 'H', '0')
 set({ 'n', 'v' }, 'L', '$')
+set({ 'n', 'v' }, 'J', '%')
 set({ 'n', 'v' }, '<C-k>', '5k')
 set({ 'n', 'v' }, '<C-j>', '5j')
 set({ 'n', 'v' }, '<C-h>', 'b')
