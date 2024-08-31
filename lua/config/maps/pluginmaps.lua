@@ -49,8 +49,6 @@ set('n', '<leader>fa', '<CMD>lua vim.lsp.buf.code_action()<CR>', opts_descr("Imp
 set('n', '<leader>fp', '<CMD>LspRestart<CR>', opts_descr("Lsp Restart"))
 
 -- Buffers
-set('n', '<Tab>', '<CMD>bnext<CR>', opts_descr("Go to next buffer", true))
-set('n', '<S-Tab>', '<CMD>bprevious<CR>', opts_descr("Go to previous buffer", true))
 set('n', '<leader>bc', '<CMD>bdelete<CR>', opts_descr("Close current buffer"))
 set('n', '<leader>bd', '<CMD>bufdo bd<CR>', opts_descr("Clear All Buffers"))
-set('n', '<leader><Tab>', '<CMD>bdelete<CR>:bnext<CR>', opts_descr("Close current buffer", true))
+set('n', '<leader><Tab>', '<CMD>bdelete<CR>:bnext<CR>', opts_descr("Close current buffer and go to next window", true))

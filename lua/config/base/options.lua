@@ -10,3 +10,4 @@ vim.opt.whichwrap = '[,],h,l'
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.title = true
 vim.opt.cursorline = true
+vim.opt.scrolloff = 3

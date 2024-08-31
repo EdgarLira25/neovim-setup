@@ -11,6 +11,8 @@ set({ 'n', 'v' }, 'd', '"_d')
 set('i', '<C-d>', '<C-o>"_dw')
 set('i', '<C-S-l>', "<delete>")
 set('i', '<C-v>', '<Esc>v')
+set('n', '<Tab>', '<CMD>bnext<CR>')
+set('n', '<S-Tab>', '<CMD>bprevious<CR>')
 
 -- autopairs
 set('v', '{', 'c{}<Esc>hp')
