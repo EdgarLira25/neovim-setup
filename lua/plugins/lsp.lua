@@ -27,14 +27,6 @@ return {
         lsp.clangd.setup({
             filetypes = { 'c', 'cpp', 'cxx', 'cc' }
         })
-        lsp.lua_ls.setup({
-        })
-        lsp.gopls.setup({
-            filetypes = { "go", "gomod", "gowork", "gotmpl" },
-            cmd = { "gopls" },
-        })
-        lsp.golangci_lint_ls.setup {
-            cmd = { "golangci-lint" }
-        }
+        lsp.lua_ls.setup({})
     end
 }
