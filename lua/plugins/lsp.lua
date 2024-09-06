@@ -20,7 +20,7 @@ return {
             filetypes = { 'python' },
             settings = { python = { analysis = { autoImportCompletions = false }, typeCheckingMode = "strict" } }
         })
-        lsp.tsserver.setup({
+        lsp.ts_ls.setup({
             filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
             cmd = { "typescript-language-server", "--stdio" }
         })
