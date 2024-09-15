@@ -4,7 +4,8 @@ require("which-key").add({ { "<leader>c", group = "Comments", icon = '#' },
     { "<leader>g", group = "GIT" },
     { "<leader>t", group = "Telescope" },
     { "<leader>b", group = "Buffer" },
-    { "<leader>f", group = "LSP",      icon = '+' }
+    { "<leader>f", group = "LSP",      icon = '+' },
+    { "<leader>n", group = "Docs",     icon = '""' }
 })
 
 -- Basic
@@ -52,3 +53,5 @@ set('n', '<leader>fp', '<CMD>LspRestart<CR>', opts_descr("Lsp Restart"))
 set('n', '<leader>bc', '<CMD>bdelete<CR>', opts_descr("Close current buffer"))
 set('n', '<leader>bd', '<CMD>bufdo bd<CR>', opts_descr("Clear All Buffers"))
 set('n', '<leader><Tab>', '<CMD>bdelete<CR>:bnext<CR>', opts_descr("Close current buffer and go to next window", true))
+
+set("n", "<Leader>nn", ":lua require('neogen').generate()<CR>", opts_descr("Gen Docs"))
