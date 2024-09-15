@@ -20,7 +20,10 @@ return {
             filetypes = { 'python' },
             settings = {
                 python = {
-                    analysis = { autoImportCompletions = false, typeCheckingMode = "standard" },
+                    analysis = {
+                        autoImportCompletions = false,
+                        typeCheckingMode = "standard",
+                    },
                 }
             }
         })
