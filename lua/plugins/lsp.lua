@@ -21,7 +21,7 @@ return {
             settings = {
                 python = {
                     analysis = {
-                        autoImportCompletions = false,
+                        autoImportCompletions = true,
                         typeCheckingMode = "standard",
                     },
                 }
@@ -35,5 +35,8 @@ return {
             filetypes = { 'c', 'cpp', 'cxx', 'cc' }
         })
         lsp.lua_ls.setup({})
+        lsp.html.setup {
+	filetypes = { "html", "css" }
+}
     end
 }

@@ -10,6 +10,7 @@ return {
     },
     config = function()
         require("telescope").setup {
+            file_ignore_patterns = {"./venv/*"},
             pickers = {
                 find_files = {
                     theme = "dropdown",

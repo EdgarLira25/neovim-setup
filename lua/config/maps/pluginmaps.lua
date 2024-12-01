@@ -55,3 +55,4 @@ set('n', '<leader>bd', '<CMD>bufdo bd<CR>', opts_descr("Clear All Buffers"))
 set('n', '<leader><Tab>', '<CMD>bdelete<CR>:bnext<CR>', opts_descr("Close current buffer and go to next window", true))
 
 set("n", "<Leader>nn", ":lua require('neogen').generate()<CR>", opts_descr("Gen Docs"))
+set('n', ':', '<cmd>FineCmdline<CR>', opts_descr("CMD", true))
