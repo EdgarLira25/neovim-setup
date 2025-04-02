@@ -56,3 +56,17 @@ set('n', '<leader><Tab>', '<CMD>bdelete<CR>:bnext<CR>', opts_descr("Close curren
 
 set("n", "<Leader>nn", ":lua require('neogen').generate()<CR>", opts_descr("Gen Docs"))
 set('n', ':', '<cmd>FineCmdline<CR>', opts_descr("CMD", true))
+
+
+set('n', '<Leader>dc', '<CMD>DapContinue<CR>', opts_descr("Continue"))
+set('n', '<Leader>do', '<CMD>DapStepOver<CR>', opts_descr("Step Over"))
+set('n', '<Leader>di', '<CMD>DapStepInto<CR>', opts_descr("Step Into"))
+set('n', '<Leader>dO', '<CMD>DapStepOut<CR>', opts_descr("Step Out"))
+set('n', '<Leader>dd', '<CMD>DapToggleBreakpoint<CR>', opts_descr("Toggle Breakpoint"))
+set('n', '<Leader>dt', '<CMD>DapTerminate<CR>', opts_descr("Terminate"))
+
+local widgets = require('dap.ui.widgets')
+set({'n', 'v'}, '<Leader>dh', function() widgets.hover() end, opts_descr("Hover"))
+set({'n', 'v'}, '<Leader>dp', function() widgets.preview() end, opts_descr("Preview"))
+set('n', '<Leader>df', function() widgets.centered_float(widgets.frames) end, opts_descr("Frames"))
+set('n', '<Leader>ds', function() widgets.centered_float(widgets.scopes) end, opts_descr("Scopes"))
