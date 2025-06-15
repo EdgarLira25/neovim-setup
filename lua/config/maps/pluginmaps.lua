@@ -54,10 +54,7 @@ set('n', '<leader>bc', '<CMD>bdelete<CR>', opts_descr("Close current buffer"))
 set('n', '<leader>bd', '<CMD>bufdo bd<CR>', opts_descr("Clear All Buffers"))
 set('n', '<leader><Tab>', '<CMD>bdelete<CR>:bnext<CR>', opts_descr("Close current buffer and go to next window", true))
 
-set("n", "<Leader>nn", ":lua require('neogen').generate()<CR>", opts_descr("Gen Docs"))
-set('n', ':', '<cmd>FineCmdline<CR>', opts_descr("CMD", true))
-
-
+-- Debugger
 set('n', '<Leader>dc', '<CMD>DapContinue<CR>', opts_descr("Continue"))
 set('n', '<Leader>do', '<CMD>DapStepOver<CR>', opts_descr("Step Over"))
 set('n', '<Leader>di', '<CMD>DapStepInto<CR>', opts_descr("Step Into"))
