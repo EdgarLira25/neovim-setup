@@ -6,7 +6,7 @@ set("v", "<S-Tab>", "<gv")
 
 -- easy life
 set('v', 'p', '"_dP')
-set({ 'i', 'v' }, '<C-c>', '<Esc>')
+set({ 'i', 'v', 'n' }, '<C-c>', '<Esc>')
 set({ 'n', 'v' }, 'd', '"_d')
 set('i', '<C-d>', '<C-o>"_dw')
 set('i', '<C-S-l>', "<delete>")
@@ -48,3 +48,6 @@ set('i', '<C-k>', '<Up>')
 set('i', '<C-j>', '<Down>')
 set('i', '<C-h>', '<Left>')
 set('i', '<C-l>', '<Right>')
+
+-- terminal mode
+set('t', '<C-n>', '<C-\\><C-n>')

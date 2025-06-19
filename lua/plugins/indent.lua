@@ -21,6 +21,7 @@ return {
                             "match_expression",
                             "function",
                             "if_statement",
+                            "return_statement",
                             "for_statement",
                             "while_statement",
                             "switch_statement",
