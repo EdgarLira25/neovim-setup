@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave" }, {
     callback = function()
         if not autosave_enabled then return end
         timer:stop()
-        timer:start(1000, 0, vim.schedule_wrap(function()
+        timer:start(50, 0, vim.schedule_wrap(function()
             local buf = vim.api.nvim_get_current_buf()
             if vim.bo[buf].modifiable and vim.bo[buf].modified then
                 -- vim.notify("Save", vim.log.levels.INFO) -- para logs
