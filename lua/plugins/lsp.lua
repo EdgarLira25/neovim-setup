@@ -3,7 +3,7 @@ return {
     dependencies = { { 'hrsh7th/cmp-nvim-lsp' }, { 'hrsh7th/nvim-cmp' } },
     config = function()
         local cmp = require 'cmp'
-        local lsp = require('lspconfig')
+        local lsp = vim.lsp.config
 
         cmp.setup({
             mapping = {
@@ -16,7 +16,7 @@ return {
             },
             sources = { { name = 'nvim_lsp' } }
         })
-        lsp.pyright.setup({
+        lsp.pyright = {
             filetypes = { 'python' },
             settings = {
                 python = {
@@ -26,15 +26,23 @@ return {
                     },
                 }
             }
-        })
-        lsp.ts_ls.setup({
+        }
+        vim.lsp.enable('pyright')
+
+        lsp.ts_ls = {
             filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
             cmd = { "typescript-language-server", "--stdio" }
-        })
-        lsp.clangd.setup({
+        }
+        vim.lsp.enable('ts_ls')
+
+        lsp.clangd = {
             filetypes = { 'c', 'cpp', 'cxx', 'cc' }
-        })
-        lsp.lua_ls.setup({})
-        lsp.html.setup({filetypes = { "html", "css" }})
+        }
+        vim.lsp.enable('clangd')
+        lsp.lua_ls = {}
+        vim.lsp.enable('lua_ls')
+
+        lsp.html = { filetypes = { "html", "css" } }
+        vim.lsp.enable('html')
     end
 }
